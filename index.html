@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Import Materialize -->
+    <link rel="stylesheet" href="css/materialize.min.css">
+    <!-- Import Icons Google -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,0,0" />
+    <title>TERUNTUK NADIA BOCIL</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        body{
+            background: url(img/baru.jpg);
+            background-size: 150em;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
+        .malam{
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            animation: keMalam 1s ease;
+        }
+
+        @keyframes keMalam{
+            0%{
+                transform: translateX(1000px);
+            }
+        }
+
+        .img{
+            width: 150px; 
+            margin: auto;
+        }
+
+        .back-hug{
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            background: rgba(0 , 0, 0, 0.8);
+            padding: 125px 50px;
+            z-index: 2;
+            left: 0;
+            top: 0;
+            backdrop-filter: blur(10px);
+            text-align: center;
+        }
+
+        .hug{
+            width: 300px;
+            position: absolute;
+            right: 0;
+            left: 0;         
+        }
+
+        .message{
+            width: auto;
+            height: auto;
+            margin-top: auto;
+            background-color: white;
+            padding: 15px;
+            border-radius: 20px;
+            box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        }
+
+        .baten{
+            text-align: center;
+            margin: 40px;
+        }
+
+        .petasan{
+            position: absolute;
+            z-index: -1;
+            animation: duar 1s ease;
+        }
+
+        @keyframes duar{
+            0%{
+                transform: scale(.1);
+            }
+        }
+
+        .petasan-besar{
+            margin-left: 100px;
+            width: 200px;
+            position: absolute;
+        }
+
+        .petasan-besar2{
+            margin-left: 150px;
+            margin-top: 400px;
+            width: 200px;
+            position: absolute;
+        }
+
+        .petasan-kecil{
+            width: 300px;
+            margin-top: 200px;
+            position: absolute;
+        }
+
+        .petasan-banyak{
+            width: 300px;
+  
+        }
+
+        .petasan-banyak2{
+            width: 300px;
+            margin-top: 50px;
+        }
+
+        .close{
+            width: 50px;
+            font-size: 40px;
+            color: rgb(108, 108, 108);
+            float: right;
+            position: absolute;
+            z-index: 3;
+            margin-top: 40px;
+            right: 0;
+            left: 0; 
+            top: 0;
+            cursor: pointer;
+        }
+
+        .huging{
+            font-size: 8vw;
+            margin-top: 300px;
+            color: white;
+        }
+        
+    </style>
+</head>
+<body>
+
+    <img src="img/malam2-1.png" alt="" class="malam" style="display: none;" height="200">
+    <div class="petasan" style="display: none;">
+        <img src="img/petasanBesar.gif" alt="" class="petasan-besar">
+        <img src="img/petasanBesar.gif" alt="" class="petasan-besar2">
+        <img src="img/petasanBesar2.gif" alt="" class="petasan-kecil">
+        <img src="img/petasanBanyak.gif" alt="" class="petasan-banyak">
+        <img src="img/petasanBanyak.gif" alt="" class="petasan-banyak2">
+    </div>
+    <br>
+    <div class="container">
+        <h3 class="center-align white-text"></h3>
+        <br>
+        <div class="img">
+            <img src="img/cat.gif" alt="" class="responsive-img" width="500">
+        </div>
+
+        <div class="back-hug" style="display: none;">
+            <i class="material-symbols-rounded close container">close</i>
+            <img src="img/hug.gif" alt="" class="responsive-img hug container">
+            <h3 class="container huging">Berpelukannn</h3>
+        </div>
+
+        <div class="message">
+            <h5 class="panpan" style="display: none;">Kitty</h5>
+            <h5 class="iyan" style="display: none;">Mr.Iyan😎</h5>
+            <p class="pesan"></p>
+        </div>
+        <div class="baten">
+            <button class="btn pink lighten-2 waves-effect waves-light" onclick="newQuote()">Ngobrol!</button>
+            <br><br>
+            <button class="btn blue waves-effect waves-light" style="display: none;">Ikuti</button>
+            <button class="btn red waves-effect waves-light" style="display: none;">BUKA</button>
+        </div>
+        
+    </div>
+    
+<script src="js/materialize.min.js"></script>
+<script>
+
+const pesan = document.querySelector('.pesan');
+const btn = document.querySelector('.btn');
+const panpan = document.querySelector('.panpan');
+const iyan = document.querySelector('.iyan');
+const btnMalam = document.querySelector('.blue');
+const imgMalam = document.querySelector('.malam');
+const btnMulai = document.querySelector('.red');
+const petasan = document.querySelector('.petasan');
+const hug = document.querySelector('.back-hug');
+const btnClose = document.querySelector('.close');
+const btnNgobrol = document.querySelector('.pink')
+
+
+var i = 0;
+var txt = ''; //the typing text
+var speed = 70;
+
+function typeWriter() {
+
+  //clear the html initially for a text
+  if (i === 0)
+    pesan.innerHTML = '';
+
+  if (i < txt.length) {
+
+    pesan.innerHTML += txt.charAt(i);
+    i++;
+    setTimeout(typeWriter, speed);
+  }
+}
+
+let count = 0;
+let quotes = [
+  'Haii Nadiaa, perkenalkan namaku Kitty yang lucu.',
+  'Aku berasal dari keluarga kucing bangsawan, dan suka menjadikan manusia sebagai babukuu😻.',
+  'Ummm sebelumnya... kamu sekarang sedang berada di dalam dunia anime.',
+  'Namun untuk keluar dari sini, kamu harus menyelesaikan semua misi!!.',
+  'Tunggu. Ada yang ingin berbicara dengan mu.',
+  "Haha ketemu lagi sama nadia bocil.",
+  `Sekarang kita lagi ada di dalem dunia anime bjirr.`,
+  'Mending ikut gua aja yukk nadd, ada yg mau gua tunjukin sama lo.',
+  '',
+  'Hari ini lagi ada festival musim panas disini.',
+  'Btw bagus kan nadd pemandangan nya? hehe gua harap lo suka.',
+  'Tapi sebelumnya, gua punya sesuatu buat lo.',
+  `"𝘐𝘺𝘢𝘯 𝘮𝘦𝘮𝘣𝘦𝘳𝘪𝘬𝘢𝘯 𝘬𝘢𝘥𝘰 𝘳𝘢𝘩𝘢𝘴𝘪𝘢 𝘬𝘦𝘱𝘢𝘥𝘢 𝘕𝘢𝘥𝘪𝘢"`,
+  'Pasti udah gak sabar yaa mau buka kado nyaa.',
+  'Yaudaa sekarang bukaa nadd.',
+  '',
+  'Yeaayy ada kembang api nadd haha.',
+  'Kembang api nya indah banget yaa.',
+  'Oiyaa nadd ada satu lagi.',
+  `"Setiap langkahmu adalah setiap anak tangga kehidupan yang kamu jalani". Jadii... semangat terus yaa nad?`,
+  "See you."
+
+
+
+
+]
+
+function newQuote() {
+  //set the typing text
+  txt = quotes[count++];
+
+  
+
+  if(count < 6 ){
+    panpan.style.display = "block";
+  } else if (count >= 6){
+    panpan.style.display = "none";
+    iyan.style.display = "block"
+  }
+
+//   if(count == 6){
+//     prompt("Kamu tau kenapa aku selalu bahagia?" + "\nCoba jawab aja duluu")
+//   }
+
+  if(count == 20){
+    hug.style.display = "block";
+  }
+
+//   if(count == 22){
+//     iyan.style.display = "none"
+//     panpan.style.display = "block";
+//   }
+  
+  if(count == 8){
+    btnMalam.style.display = "inline-block"
+    btnNgobrol.style.display = "none"
+  }
+  
+  if(count == 15){
+    btnMulai.style.display = 'inline-block'
+    btnNgobrol.style.display = "none"
+  }
+
+  //reset the index
+  i = 0;
+  typeWriter();
+}
+
+btnMalam.addEventListener('click', function(){
+    imgMalam.style.display = "block"
+    btnMalam.style.display = "none"
+    btnNgobrol.style.display = "inline-block"
+})
+
+btnMulai.addEventListener('click', function(){
+    petasan.style.display = "block"
+    btnMulai.style.display = "none"
+    btnNgobrol.style.display = "inline-block"
+})
+
+btnClose.addEventListener('click', function(){
+    hug.style.display = "none"
+})
+
+</script>
+</body>
+</html>
